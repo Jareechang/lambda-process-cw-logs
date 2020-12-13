@@ -46,14 +46,6 @@ export TF_VAR_s3_bucket_name=<unique-s3-bucket-name>
 
 ```
 
-2. Export your ip address
-
-```
-export TF_VAR_local_ip_address=<your-ip-address>
-```
-
-3. Run terraform (VPC, database and lambda)
-
 ## Technologies
 
 
