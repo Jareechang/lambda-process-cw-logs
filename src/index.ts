@@ -17,5 +17,5 @@ exports.processLambdaErrorLog = async function(
     context: Context 
 ) {
     const processedLogs = processLogs(event);
-    console.log('[DONE] processed: ', JSON.stringify(processLogs, null, 2));
+    console.log('[DONE] processed: ', JSON.stringify(processedLogs, null, 2));
 }
