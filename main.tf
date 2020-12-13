@@ -22,7 +22,7 @@ locals {
 resource "aws_s3_bucket_object" "default" {
     bucket = "${aws_s3_bucket.lambda_bucket.id}"
     key = local.target_pkg_name 
-    source = "${local.target_pkg_name}.zip"
+    source = "./${local.build_folder}/${local.target_pkg_name}.zip"
     etag = "${filemd5("./${local.build_folder}/${local.target_pkg_name}.zip")}"
 }
 
@@ -56,11 +56,13 @@ resource "aws_lambda_function" "log_lambda" {
     runtime = "nodejs12.x"
     depends_on = [
         "aws_iam_role_policy_attachment.attach_lambda_role_logs",
-        "aws_cloudwatch_log_group.sample_log_group_read"
+        "aws_cloudwatch_log_group.log_lambda"
     ]
 
     environment {
-        variables = {}
+        variables = {
+            name = "${var.lambda_func_ns}-print-log-lambda"
+        }
     }
 }
 
@@ -75,11 +77,13 @@ resource "aws_lambda_function" "error_processing_lambda" {
     runtime = "nodejs12.x"
     depends_on = [
         "aws_iam_role_policy_attachment.attach_lambda_role_logs",
-        "aws_cloudwatch_log_group.sample_log_group_read"
+        "aws_cloudwatch_log_group.log_lambda"
     ]
 
     environment {
-        variables = {}
+        variables = {
+            name = "${var.lambda_func_ns}-error-processing-lambda"
+        }
     }
 }
 
@@ -110,7 +114,7 @@ resource "aws_lambda_permission" "allow_cloudwatch_logs" {
     statement_id  = "AllowExecutionFromCloudWatchLogs"
     action        = "lambda:InvokeFunction"
     function_name = aws_lambda_function.error_processing_lambda.arn
-    principal     = "events.amazonaws.com"
+    principal     = "logs.${var.aws_region}.amazonaws.com"
     source_arn    = aws_cloudwatch_log_group.log_lambda.arn
 }
 
@@ -129,8 +133,11 @@ resource "aws_iam_role_policy_attachment" "attach_lambda_role_logs" {
 
 resource "aws_cloudwatch_log_subscription_filter" "error_lambda_logfilter" {
     name            = "lambda_error_log_filter"
-    log_group_name  = "/aws/lambda/${var.lambda_func_name}-print-log-lambda"
+    log_group_name  = aws_cloudwatch_log_group.log_lambda.name
     filter_pattern  = "ERROR"
     destination_arn = aws_lambda_function.error_processing_lambda.arn
     distribution    = "Random"
+    depends_on = [
+        "aws_lambda_permission.allow_cloudwatch_logs"
+    ]
 }
