@@ -7,5 +7,5 @@ exports.handler = async function(
     event: CloudWatchLogsEvent,
     context: Context 
 ) {
-    console.log('testing 123');
+    console.log('TODO');
 }
