@@ -40,6 +40,7 @@ TODO
 export AWS_ACCESS_KEY_ID=<xxxx>
 export AWS_SECRET_ACCESS_KEY=<xxxx>
 export AWS_DEFAULT_REGION=us-east-1
+export TF_VAR_s3_bucket_name=<unique-s3-bucket-name>
 
 . ./setup-env.sh
 
