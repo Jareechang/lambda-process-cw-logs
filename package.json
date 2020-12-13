@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "ts-check": "tsc --noEmit",
-    "build": "yarn run ts-check && rollup -c",
+    "prebuild": "yarn run clean && yarn run ts-check && yarn run test",
+    "build": "rollup -c",
     "clean": "cross-env-shell \"rm -rf dist && rm -rf deploy\"",
     "test": "jest -c ./jest.config.js",
     "postversion": "node ./scripts/version-lambda.js",
@@ -23,6 +24,7 @@
     "@common-web/babel": "^1.0.2",
     "@common-web/jest": "1.x.x",
     "@types/jest": "^26.0.19",
+    "cross-env": "^7.0.3",
     "jest": "^26.6.3"
   }
 }

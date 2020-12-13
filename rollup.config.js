@@ -1,7 +1,10 @@
 import { getBaseRollupPlugins } from '@common-web/rollup';
 
 const plugins = getBaseRollupPlugins({
-    eslint: { disabled: true } 
+    eslint: { disabled: true },
+    typescript: {
+        tsconfig: 'tsconfig.build.json'
+    }
 }).concat([
     // Include your own plugins to support other features 
 ]);
