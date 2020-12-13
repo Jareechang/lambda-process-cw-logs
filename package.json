@@ -1,0 +1,28 @@
+{
+  "name": "lambda-process-cw-logs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "ts-check": "tsc --noEmit",
+    "build": "yarn run ts-check && rollup -c",
+    "clean": "cross-env-shell \"rm -rf dist && rm -rf deploy\"",
+    "test": "jest -c ./jest.config.js",
+    "postversion": "node ./scripts/version-lambda.js",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major"
+  },
+  "dependencies": {
+    "@common-web/rollup": "^1.0.15",
+    "@common-web/ts-config": "^1.0.1",
+    "@types/aws-lambda": "^8.10.66",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@common-web/babel": "^1.0.2",
+    "@common-web/jest": "1.x.x",
+    "@types/jest": "^26.0.19",
+    "jest": "^26.6.3"
+  }
+}

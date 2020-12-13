@@ -1,0 +1,11 @@
+{
+  "logEvents": [
+    {"id": "eventId1", "message": "[ERROR] First test message", "timestamp": 1440442987000},
+    {"id": "eventId2", "message": "[ERROR] Second test message", "timestamp": 1440442987001}
+  ],
+  "logGroup": "testLogGroup",
+  "logStream": "testLogStream",
+  "messageType": "DATA_MESSAGE",
+  "owner": "123456789123",
+  "subscriptionFilters": ["testFilter"]
+}

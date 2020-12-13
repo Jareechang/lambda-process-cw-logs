@@ -1,0 +1,12 @@
+setup-env.sh
+env.tfvars
+dist
+terraform.tfstate.backup
+*.tfstate
+*.swp
+.terraform
+*.pem
+db-create-instructions.md
+node_modules
+*.log
+deploy
