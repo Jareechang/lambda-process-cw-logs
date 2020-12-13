@@ -11,6 +11,7 @@ const plugins = getBaseRollupPlugins({
 
 export default {
     input: 'src/index.ts',
+    external: ['zlib'],
     output: [
         {
             file: 'dist/index.js',

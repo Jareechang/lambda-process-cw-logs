@@ -1,3 +1,8 @@
+provider "aws" {
+  version = "~> 2.0"
+  region  = "${var.aws_region}"
+}
+
 resource "aws_s3_bucket" "lambda_bucket" {
     bucket  = var.s3_bucket_name
     acl     = "private"
@@ -9,7 +14,7 @@ resource "aws_s3_bucket" "lambda_bucket" {
 }
 
 locals {
-    package_json    = jsondecode(file("../../package.json"))
+    package_json    = jsondecode(file("./package.json"))
     build_folder    = "./deploy"
     target_pkg_name = "${local.package_json.name}-${local.package_json.version}"
 }
@@ -18,7 +23,7 @@ resource "aws_s3_bucket_object" "default" {
     bucket = "${aws_s3_bucket.lambda_bucket.id}"
     key = local.target_pkg_name 
     source = "${local.target_pkg_name}.zip"
-    etag = "${filemd5("./${local.build_folder}/${target_pkg_name}.zip")}"
+    etag = "${filemd5("./${local.build_folder}/${local.target_pkg_name}.zip")}"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
@@ -79,12 +84,12 @@ resource "aws_lambda_function" "error_processing_lambda" {
 }
 
 resource "aws_cloudwatch_log_group" "log_lambda" {
-    name = "/aws/lambda/${var.lambda_func_name}-print-log-lambda"
+    name = "/aws/lambda/${var.lambda_func_ns}-print-log-lambda"
     retention_in_days = 1
 }
 
 resource "aws_cloudwatch_log_group" "error_processing_lambda" {
-    name = "/aws/lambda/${var.lambda_func_name}-error-processing-lambda"
+    name = "/aws/lambda/${var.lambda_func_ns}-error-processing-lambda"
     retention_in_days = 1
 }
 
