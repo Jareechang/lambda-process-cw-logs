@@ -3,9 +3,19 @@ import {
     CloudWatchLogsEvent
 } from 'aws-lambda';
 
-exports.handler = async function(
+import { processLogs } from './process-log';
+
+exports.logLambda = async function(
     event: CloudWatchLogsEvent,
     context: Context 
 ) {
-    console.log('TODO');
+    console.error('ERROR: This is an error');
+}
+
+exports.processLambdaErrorLog = async function(
+    event: CloudWatchLogsEvent,
+    context: Context 
+) {
+    const processedLogs = processLogs(event);
+    console.log('[DONE] processed: ', JSON.stringify(processLogs, null, 2));
 }
