@@ -32,6 +32,10 @@ Create a function to process Cloudwatch logs streams to detect errors.
 - [ ] Setup AWS SSM
 - [ ] Setup SNS for notification channels (ex. text, slack and email)
 
+### Sample Slack Notification
+
+![alt slack notificaiton sample](./images/lambda-log-sample-slack-notification.png)
+
 
 ## Quick Start
 
