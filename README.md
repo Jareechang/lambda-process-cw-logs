@@ -7,11 +7,13 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 ## Contents 
 
-- [Introduction](#introduction)
+- [Introduction](#introduction)  
+   - [Todo](#todo-list)
 - [Quick Start](#quick-start)
 - [Technologies](#technologies)
 - [Notes](#notes)
 - [Helpful links](#helpful-links)
+
 
 ## Introduction
 
@@ -19,8 +21,17 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 1. For regular workloads - logs to a specific cloudwatch log group
 2. For supplementary workloads - processing the logs from #1
+3. Setup AWS SSM for storing senstive info (slack webhook url)
+4. Setup SNS / slack notification for errors [BONUS]
 
-3. Setup SNS / slack notification for errors [BONUS]
+
+### Todo list 
+
+- [x] Scaffold infra for print log lambda and error processor lambda 
+- [x] Scaffold send slack webhook alert
+- [] Setup AWS SSM
+- [] Setup SNS for notification channels (ex. text, slack and email)
+
 
 ## Quick Start
 
@@ -28,9 +39,10 @@ TODO
 
 **Technologies:**
 
-
 - AWS Lambda
 - Terraform (>= v0.12.24)
+- axios (^0.21.0)
+- @speee-js/jsx-slack (^2.6.x)
 
 1. Add AWS secret and key to your environment (or use template below and fill in envs)
 
@@ -94,3 +106,4 @@ This section contains the helpful links for this particular task / project.
 **Stackoverflow:**  
 
 - [AWS Subscription Filter cloudwatch log, terraform Discussion](https://stackoverflow.com/questions/38407660/terraform-configuring-cloudwatch-log-subscription-delivery-to-lambda/38428834#38428834)
+
