@@ -42,7 +42,7 @@ TODO
 - AWS Lambda
 - Terraform (>= v0.12.24)
 - axios (^0.21.0)
-- @speee-js/jsx-slack (^2.6.x)
+- [@speee-js/jsx-slack](https://github.com/speee/jsx-slack) (^2.6.x)
 
 1. Add AWS secret and key to your environment (or use template below and fill in envs)
 
@@ -106,4 +106,3 @@ This section contains the helpful links for this particular task / project.
 **Stackoverflow:**  
 
 - [AWS Subscription Filter cloudwatch log, terraform Discussion](https://stackoverflow.com/questions/38407660/terraform-configuring-cloudwatch-log-subscription-delivery-to-lambda/38428834#38428834)
-
