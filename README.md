@@ -29,8 +29,8 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 - [x] Scaffold infra for print log lambda and error processor lambda 
 - [x] Scaffold send slack webhook alert
-- [] Setup AWS SSM
-- [] Setup SNS for notification channels (ex. text, slack and email)
+- [ ] Setup AWS SSM
+- [ ] Setup SNS for notification channels (ex. text, slack and email)
 
 
 ## Quick Start
