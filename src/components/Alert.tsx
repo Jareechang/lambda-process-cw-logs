@@ -33,6 +33,11 @@ interface Props {
      * Description of the alert
      * **/
     description: string;
+    
+    /*
+     *  call to action url for the button
+     * **/
+    buttonUrl: string;
 }
 
 const images = {
@@ -55,6 +60,7 @@ export const Alert = (props: Props) => {
                     src: images.thisIsFineSrc, 
                     alt: 'this is fine...'
                 }}
+                buttonUrl={props.buttonUrl}
             />
         </Blocks>
     );
