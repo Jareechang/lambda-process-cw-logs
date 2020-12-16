@@ -11,3 +11,4 @@ node_modules
 *.log
 deploy
 .DS_Store
+test.js

@@ -17,7 +17,9 @@
   "dependencies": {
     "@common-web/rollup": "^1.0.15",
     "@common-web/ts-config": "^1.0.1",
+    "@speee-js/jsx-slack": "^2.6.0",
     "@types/aws-lambda": "^8.10.66",
+    "axios": "^0.21.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
