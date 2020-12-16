@@ -41,13 +41,6 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 TODO
 
-**Technologies:**
-
-- AWS Lambda
-- Terraform (>= v0.12.24)
-- axios (^0.21.0)
-- [@speee-js/jsx-slack](https://github.com/speee/jsx-slack) (^2.6.x)
-
 1. Add AWS secret and key to your environment (or use template below and fill in envs)
 
 ```sh
@@ -70,6 +63,8 @@ export TF_VAR_s3_bucket_name=<unique-s3-bucket-name>
 - Jest (26.x)
 - Typescript (3.9.7)
 - rollup (1.3.x)
+- axios (^0.21.0)
+- [@speee-js/jsx-slack](https://github.com/speee/jsx-slack) (^2.6.x)
 
 ## Notes
 
