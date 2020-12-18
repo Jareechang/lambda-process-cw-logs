@@ -10,21 +10,7 @@ import {
     AlertType
 } from './AlertInfo';
 
-export interface LogDetails {
-    /*
-     * Number of error log events observed
-     * */
-    events: number;
-    /*
-     * the log group
-     *
-     * **/
-    group: string;
-    /*
-     * The filter which the log group is grepping by
-     * **/
-    filters: string;
-}
+import * as types from './types';
 
 interface Props {
     /*
@@ -59,7 +45,7 @@ interface Props {
      * More details about the log
      *
      * **/
-    logDetails?: LogDetails;
+    logDetails?: types.LogDetails;
 }
 
 const images = {
@@ -78,6 +64,7 @@ export const Alert = (props: Props) => {
                 type={props.type}
                 title={props.subtitle}
                 description={props.description}
+                logDetails={logDetails}
                 image={{
                     //src: 'https://placekitten.com/500/500',
                     src: images.thisIsFineSrc, 
@@ -85,11 +72,6 @@ export const Alert = (props: Props) => {
                 }}
                 buttonUrl={props.buttonUrl}
             />
-            {logDetails && (
-                <Section>
-                    <b>Details:</b> {logDetails.group} / {logDetails.events}  / {logDetails.filters}
-                </Section>
-            )}
         </Blocks>
     );
 }

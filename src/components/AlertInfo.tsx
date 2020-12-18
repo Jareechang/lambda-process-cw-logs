@@ -11,6 +11,7 @@ import {
 } from '@speee-js/jsx-slack'
 
 import * as utils from './AlertInfo.utils';
+import * as types from './types';
 
 interface ImageOptions {
     src: string;
@@ -44,6 +45,8 @@ interface Props {
      * Call to action for the alert
      * **/
     buttonUrl: string;
+
+    logDetails?: types.LogDetails;
 }
 
 const defaultProps : Props = {
@@ -54,7 +57,7 @@ const defaultProps : Props = {
         src: '',
         alt: ''
     },
-    buttonUrl: ''
+    buttonUrl: '',
 };
 
 export const AlertInfo = (
@@ -65,14 +68,19 @@ export const AlertInfo = (
         description,
         type,
         image,
-        buttonUrl
+        buttonUrl,
+        logDetails
     } = props;
+
     return (
         <Fragment>
             <Section>
                 <b>Title:</b> {title || ''}<br />
                 <b>Date:</b> {utils.getCurrentDate()}<br />
                 <b>Description:</b> {description || ''}<br />
+                <b>Group:</b>{logDetails ? logDetails.group : 'N/A'}<br />
+                <b>Events:</b>{logDetails ? logDetails.events : 'N/A'}<br />
+                <b>Filters:</b>{logDetails? logDetails.filters : 'N/A'}<br />
                 <Image
                     src={image.src}
                     alt={image.alt}
