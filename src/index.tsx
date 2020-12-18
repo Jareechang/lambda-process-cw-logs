@@ -49,9 +49,7 @@ exports.processLambdaErrorLog = async function(
                 type="error"
                 title="Logging Alert"
                 subtitle="Lambda - Processed error logs"
-                description={
-                    `Received error logs from foo service, logGroup: ${logGroup}, events: ${logEvents.length} `
-                }
+                description="Received error logs from foo service"
                 buttonUrl="TODO"
             />
         )
