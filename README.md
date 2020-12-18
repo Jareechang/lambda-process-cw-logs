@@ -50,10 +50,23 @@ export AWS_ACCESS_KEY_ID=<xxxx>
 export AWS_SECRET_ACCESS_KEY=<xxxx>
 export AWS_DEFAULT_REGION=us-east-1
 export TF_VAR_s3_bucket_name=<unique-s3-bucket-name>
+export TF_VAR_slack_webhook_endpoint_url=<slack-web-hook-url>
 
 . ./setup-env.sh
 
 ```
+
+2. Invoking Lambda (using `aws-cli`)
+
+This will kick off the trigger to start logging error in our print log error lambda.
+
+```sh
+aws lambda invoke \
+    --function-name process-cw-logs-print-log-lambda \
+    response.json
+```
+
+3. Inspect the message in your slack channel
 
 ## Technologies
 

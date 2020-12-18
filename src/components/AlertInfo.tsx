@@ -82,7 +82,7 @@ export const AlertInfo = (
             <Context>{utils.getEmoji(type)} - <b>{utils.getAlertContextMessage(type)}</b></Context>
             <Actions>
             {/* Attach link to s3 archived error logs */}
-            <Button url={buttonUrl}>View logs</Button>
+                <Button url={buttonUrl}>View logs</Button>
             </Actions>
         </Fragment>
     );

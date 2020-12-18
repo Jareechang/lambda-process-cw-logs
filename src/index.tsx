@@ -76,7 +76,7 @@ exports.sendWebhook = async function() {
                 title="Logging Alert"
                 subtitle="[Lambda - Processed error logs]"
                 description="Received error logs from foo service"
-                buttonUrl="TODO"
+                buttonUrl="http://github.com/jareechang/"
             />
         )
     );
