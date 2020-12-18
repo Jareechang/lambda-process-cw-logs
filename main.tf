@@ -104,6 +104,7 @@ resource "aws_lambda_function" "error_processing_lambda" {
     environment {
         variables = {
             name = "${var.lambda_func_ns}-error-processing-lambda"
+            SLACK_MS_DEBUG = true
             slack_channel = "general"
         }
     }

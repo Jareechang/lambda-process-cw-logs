@@ -26,8 +26,8 @@ exports.processLambdaErrorLog = async function(
     console.log('[DONE] processed: ', JSON.stringify(processedLogs, null, 2));
 
     const {
-        logEvents,
-        logGroup
+        logEvents = [],
+        logGroup = 'N/A'
     } = processedLogs;
 
     const {
