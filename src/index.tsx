@@ -25,10 +25,17 @@ exports.processLambdaErrorLog = async function(
     const processedLogs = processLogs(event);
     console.log('[DONE] processed: ', JSON.stringify(processedLogs, null, 2));
 
-    //const {
-        //logEvents = [],
-        //logGroup = 'N/A'
-    //} = processedLogs;
+    const {
+        logEvents = [],
+        logGroup = 'N/A',
+        subscriptionFilters = []
+    } = processedLogs;
+
+    const logDetails = {
+        events: logEvents.length,
+        group: logGroup,
+        filters: JSON.stringify(subscriptionFilters)
+    }
 
     const {
         slack_url
@@ -50,7 +57,8 @@ exports.processLambdaErrorLog = async function(
                 title="Logging Alert"
                 subtitle="Lambda - Processed error logs"
                 description="Received error logs from foo service"
-                buttonUrl="TODO"
+                buttonUrl="http://github.com/jareechang/"
+                logDetails={logDetails}
             />
         )
     );

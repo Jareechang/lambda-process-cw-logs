@@ -10,6 +10,22 @@ import {
     AlertType
 } from './AlertInfo';
 
+export interface LogDetails {
+    /*
+     * Number of error log events observed
+     * */
+    events: number;
+    /*
+     * the log group
+     *
+     * **/
+    group: string;
+    /*
+     * The filter which the log group is grepping by
+     * **/
+    filters: string;
+}
+
 interface Props {
     /*
      * Alert type
@@ -38,6 +54,12 @@ interface Props {
      *  call to action url for the button
      * **/
     buttonUrl: string;
+
+    /*
+     * More details about the log
+     *
+     * **/
+    logDetails?: LogDetails;
 }
 
 const images = {
@@ -47,6 +69,7 @@ const images = {
 };
 
 export const Alert = (props: Props) => {
+    const {logDetails} = props;
     return (
         <Blocks>
             <Section><b>{props.title}</b></Section>
@@ -62,7 +85,11 @@ export const Alert = (props: Props) => {
                 }}
                 buttonUrl={props.buttonUrl}
             />
+            {logDetails && (
+                <Section>
+                    <b>Details:</b> {logDetails.group} / {logDetails.events}  / {logDetails.subscriptionFilters}
+                </Section>
+            )}
         </Blocks>
     );
-
 }

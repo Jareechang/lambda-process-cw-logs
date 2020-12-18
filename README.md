@@ -56,7 +56,22 @@ export TF_VAR_slack_webhook_endpoint_url=<slack-web-hook-url>
 
 ```
 
-2. Invoking Lambda (using `aws-cli`)
+2. Build assets
+
+Create a new version of the assets to be shipped and deployed 🚀.
+
+**Command:**
+```sh
+yarn version:patch
+```
+
+**What you should see:**
+```
+./deploy/
+└── lambda-process-cw-logs-<version>.zip
+```
+
+3. Invoking Lambda (using `aws-cli`)
 
 This will kick off the trigger to start logging error in our print log error lambda.
 
@@ -67,6 +82,24 @@ aws lambda invoke \
 ```
 
 3. Inspect the message in your slack channel
+
+
+4. Inspect Cloudwatch Logs (if you don't see message, there may be issues)
+
+To debug, please enable debug mode by uncommenting the following line:
+
+```ts
+
+resource "aws_lambda_function" "error_processing_lambda" {
+    ...
+    environment {
+        variables = {
+            ...
+            #SLACK_MS_DEBUG = true <-- uncomment
+        }
+    }
+}
+```
 
 ## Technologies
 
