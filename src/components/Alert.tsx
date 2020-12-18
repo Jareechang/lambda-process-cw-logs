@@ -87,7 +87,7 @@ export const Alert = (props: Props) => {
             />
             {logDetails && (
                 <Section>
-                    <b>Details:</b> {logDetails.group} / {logDetails.events}  / {logDetails.subscriptionFilters}
+                    <b>Details:</b> {logDetails.group} / {logDetails.events}  / {logDetails.filters}
                 </Section>
             )}
         </Blocks>

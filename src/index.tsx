@@ -8,7 +8,7 @@ import {
 
 import { processLogs } from './process-log';
 import { SlackWebhook } from './slack-webhook';
-import { Alert } from './components';
+import { Alert, LogDetails } from './components';
 import { getAppSecrets } from './app-secrets';
 
 exports.logLambda = async function(
@@ -31,7 +31,7 @@ exports.processLambdaErrorLog = async function(
         subscriptionFilters = []
     } = processedLogs;
 
-    const logDetails = {
+    const logDetails : LogDetails = {
         events: logEvents.length,
         group: logGroup,
         filters: JSON.stringify(subscriptionFilters)
