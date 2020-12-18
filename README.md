@@ -39,6 +39,12 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 ## Quick Start
 
+⚠️  **Important:** ⚠️  Remember to destroy all resources after finish testing 
+
+```sh
+terraform destroy -auto-approve
+```
+
 
 1. Allow messages to be sent to your slack channel, see [Slack Instructions](https://api.slack.com/messaging/webhooks).
 
