@@ -1,0 +1,13 @@
+{
+  "Parameters":[
+    {
+      "Name": "/dev/application/slack_webhook/url",
+      "Type": "SecureString",
+      "Value": "https://hooks.slack.com/services/<omitted>",
+      "Version": 1,
+      "LastModifiedDate": "2020-12-18T02:58:31.056Z",
+      "ARN": "arn:aws:ssm:us-east-1:164538582220:parameter/dev/application/slack_webhook/url",
+      "DataType": "text"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mapSecretNames() should properly return the correct mapping for secrets 1`] = `
+Object {
+  "slack_url": "https://hooks.slack.com/services/<omitted>",
+}
+`;

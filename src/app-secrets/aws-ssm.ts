@@ -1,9 +1,23 @@
 import AWS from 'aws-sdk';
 import * as types from './types';
 
-const ssm = new AWS.SSM({
-    apiVersion: '2014-11-06'
-});
+import mapping from './mapping.json';
+
+export const mapSecretNames = (
+    results: any 
+): types.AppSecrets => {
+    if (!results && !Array.isArray(results)) return results;
+    const parameters = results.Parameters || [];
+    return parameters.reduce((acc: any, curr: any) => {
+        const {
+            Name,
+            Value
+        } = curr;
+        const mappedName = mapping[Name];
+        acc[mappedName] = Value;
+        return acc;
+    }, {});
+}
 
 export const getAppSecrets = async(
     // The base of the ssm param path
@@ -16,18 +30,20 @@ export const getAppSecrets = async(
      * **/
     ssmOptions?: any
 ): Promise<types.AppSecrets | null> => {
-  let ApplicationParams : any = null;
+    const ssm = new AWS.SSM({
+        apiVersion: '2014-11-06'
+    });
+    let ApplicationParams : any = null;
     try {
         ApplicationParams = await ssm.getParametersByPath({
-                Path: baseSecretPath,
-                Recursive: true,
-                WithDecryption: true
-            },
-        ).promise();
+            Path: baseSecretPath,
+            Recursive: true,
+            WithDecryption: true
+        }).promise();
     } catch (ex) {
         console.error(
             `Failed to fetch Parameters from System Manager Parameter Store, ex: ${ex}`
         )
     }
-    return ApplicationParams;
+    return mapSecretNames(ApplicationParams);
 }
