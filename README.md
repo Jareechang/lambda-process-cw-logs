@@ -31,6 +31,7 @@ Create a function to process Cloudwatch logs streams to detect errors.
 - [x] Scaffold send slack webhook alert
 - [x] Setup AWS SSM
 - [ ] Setup SNS for notification channels (ex. text, slack and email)
+- [ ] Include architecture diagram
 
 ### Sample Slack Notification
 
