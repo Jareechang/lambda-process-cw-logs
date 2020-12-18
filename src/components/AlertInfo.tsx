@@ -78,9 +78,9 @@ export const AlertInfo = (
                 <b>Title:</b> {title || ''}<br />
                 <b>Date:</b> {utils.getCurrentDate()}<br />
                 <b>Description:</b> {description || ''}<br />
-                <b>Group:</b>{logDetails ? logDetails.group : 'N/A'}<br />
-                <b>Events:</b>{logDetails ? logDetails.events : 'N/A'}<br />
-                <b>Filters:</b>{logDetails? logDetails.filters : 'N/A'}<br />
+                <b>Group:</b> {logDetails ? logDetails.group : 'N/A'}<br />
+                <b>Events:</b> {logDetails ? logDetails.events : 'N/A'}<br />
+                <b>Filters:</b> {logDetails? logDetails.filters : 'N/A'}<br />
                 <Image
                     src={image.src}
                     alt={image.alt}
