@@ -23,7 +23,7 @@ exports.processLambdaErrorLog = async function(
     context: Context 
 ) {
     const secrets = await getAppSecrets(
-        '/dev/application/slack_webhook/url'
+        '/dev/application/slack_webhook'
     );
     console.log(secrets);
     const processedLogs = processLogs(event);
