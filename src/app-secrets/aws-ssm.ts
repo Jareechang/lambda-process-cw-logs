@@ -29,7 +29,7 @@ export const getAppSecrets = async(
      *
      * **/
     ssmOptions?: any
-): Promise<types.AppSecrets | null> => {
+): Promise<types.AppSecrets> => {
     const ssm = new AWS.SSM({
         apiVersion: '2014-11-06'
     });

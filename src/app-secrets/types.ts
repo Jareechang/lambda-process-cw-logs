@@ -1,3 +1,3 @@
 export interface AppSecrets {
-    [k: string]: string
+    slack_url: string;
 }
