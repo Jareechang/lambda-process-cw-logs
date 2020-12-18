@@ -25,10 +25,10 @@ exports.processLambdaErrorLog = async function(
     const processedLogs = processLogs(event);
     console.log('[DONE] processed: ', JSON.stringify(processedLogs, null, 2));
 
-    const {
-        logEvents = [],
-        logGroup = 'N/A'
-    } = processedLogs;
+    //const {
+        //logEvents = [],
+        //logGroup = 'N/A'
+    //} = processedLogs;
 
     const {
         slack_url
