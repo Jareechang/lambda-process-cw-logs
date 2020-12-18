@@ -34,7 +34,7 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 ### Sample Slack Notification
 
-![alt slack notificaiton sample](./images/lambda-log-sample-slack-notification.png)
+![alt slack notificaiton sample](./images/lambda-log-sample-slack-notification-1.png)
 
 
 ## Quick Start
