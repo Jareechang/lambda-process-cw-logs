@@ -9,6 +9,7 @@ import {
 import { processLogs } from './process-log';
 import { SlackWebhook } from './slack-webhook';
 import { Alert } from './components';
+import { getAppSecrets } from './app-secrets';
 
 exports.logLambda = async function(
     event: CloudWatchLogsEvent,
@@ -21,6 +22,10 @@ exports.processLambdaErrorLog = async function(
     event: CloudWatchLogsEvent,
     context: Context 
 ) {
+    const secrets = await getAppSecrets(
+        '/dev/application/slack_webhook/url'
+    );
+    console.log(secrets);
     const processedLogs = processLogs(event);
     console.log('[DONE] processed: ', JSON.stringify(processedLogs, null, 2));
 }

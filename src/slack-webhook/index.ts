@@ -27,7 +27,7 @@ import * as t from '../types';
  * **/
 export class SlackWebhook implements t.SlackWebhook {
     private endpoint : string;
-    private debug : boolean;
+    private debug : boolean = false;
 
     public constructor(endpoint: string) {
         this.endpoint = endpoint;

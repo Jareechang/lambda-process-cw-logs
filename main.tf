@@ -3,6 +3,15 @@ provider "aws" {
   region  = "${var.aws_region}"
 }
 
+
+locals {
+    package_json    = jsondecode(file("./package.json"))
+    build_folder    = "./deploy"
+    target_pkg_name = "${local.package_json.name}-${local.package_json.version}"
+    # Namespace for the param path
+    ssm_param_ns    = "dev/application"
+}
+
 resource "aws_s3_bucket" "lambda_bucket" {
     bucket  = var.s3_bucket_name
     acl     = "private"
@@ -13,10 +22,20 @@ resource "aws_s3_bucket" "lambda_bucket" {
     }
 }
 
-locals {
-    package_json    = jsondecode(file("./package.json"))
-    build_folder    = "./deploy"
-    target_pkg_name = "${local.package_json.name}-${local.package_json.version}"
+resource "aws_kms_key" "default" {
+  description             = "Default encryption key (symmetric)"
+  deletion_window_in_days = 10
+}
+
+resource "aws_ssm_parameter" "slack_webhook_url" {
+  name        = "/${local.ssm_param_ns}/slack_webhook/url"
+  description = "Datbase password"
+  type        = "SecureString"
+  key_id      = aws_kms_key.default.key_id
+  value       = var.slack_webhook_endpoint_url
+  tags = {
+    environment = "dev"
+  }
 }
 
 resource "aws_s3_bucket_object" "default" {
@@ -83,6 +102,7 @@ resource "aws_lambda_function" "error_processing_lambda" {
     environment {
         variables = {
             name = "${var.lambda_func_ns}-error-processing-lambda"
+            slack_channel = "general"
         }
     }
 }
@@ -107,6 +127,20 @@ data "aws_iam_policy_document" "lambda_cw_log_policy" {
         ]
         effect = "Allow"
         resources = ["arn:aws:logs:*:*:*"]
+    }
+
+    statement {
+        actions   = ["ssm:GetParameters", "ssm:GetParametersByPath"]
+        resources = [
+            "arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/${var.ssm_parameters_base}"
+        ]
+        effect    = "Allow"
+    }
+
+    statement {
+        actions   = ["kms:Decrypt"]
+        resources = ["${aws_kms_key.default.arn}"]
+        effect    = "Allow"
     }
 }
 

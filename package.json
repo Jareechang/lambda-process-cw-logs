@@ -19,6 +19,7 @@
     "@common-web/ts-config": "^1.0.1",
     "@speee-js/jsx-slack": "^2.6.0",
     "@types/aws-lambda": "^8.10.66",
+    "aws-sdk": "^2.813.0",
     "axios": "^0.21.0",
     "zlib": "^1.0.5"
   },
