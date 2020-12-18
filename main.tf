@@ -12,6 +12,8 @@ locals {
     ssm_param_ns    = "dev/application"
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_s3_bucket" "lambda_bucket" {
     bucket  = var.s3_bucket_name
     acl     = "private"
@@ -132,7 +134,7 @@ data "aws_iam_policy_document" "lambda_cw_log_policy" {
     statement {
         actions   = ["ssm:GetParameters", "ssm:GetParametersByPath"]
         resources = [
-            "arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/${var.ssm_parameters_base}"
+            "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/${local.ssm_param_ns}*"
         ]
         effect    = "Allow"
     }
