@@ -12,3 +12,4 @@ node_modules
 deploy
 .DS_Store
 test.js
+response.json
