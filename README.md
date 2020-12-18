@@ -29,7 +29,7 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 - [x] Scaffold infra for print log lambda and error processor lambda 
 - [x] Scaffold send slack webhook alert
-- [ ] Setup AWS SSM
+- [x] Setup AWS SSM
 - [ ] Setup SNS for notification channels (ex. text, slack and email)
 
 ### Sample Slack Notification
@@ -39,9 +39,10 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 ## Quick Start
 
-TODO
 
-1. Add AWS secret and key to your environment (or use template below and fill in envs)
+1. Allow messages to be sent to your slack channel, see [Slack Instructions](https://api.slack.com/messaging/webhooks).
+
+2. Add AWS secret and key to your environment (or use template below and fill in envs)
 
 ```sh
 
@@ -56,7 +57,7 @@ export TF_VAR_slack_webhook_endpoint_url=<slack-web-hook-url>
 
 ```
 
-2. Build assets
+3. Build assets
 
 Create a new version of the assets to be shipped and deployed 🚀.
 
@@ -71,7 +72,7 @@ yarn version:patch
 └── lambda-process-cw-logs-<version>.zip
 ```
 
-3. Invoking Lambda (using `aws-cli`)
+4. Invoking Lambda (using `aws-cli`)
 
 This will kick off the trigger to start logging error in our print log error lambda.
 
@@ -81,10 +82,10 @@ aws lambda invoke \
     response.json
 ```
 
-3. Inspect the message in your slack channel
+5. Inspect the message in your slack channel
 
 
-4. Inspect Cloudwatch Logs (if you don't see message, there may be issues)
+6. Inspect Cloudwatch Logs (if you don't see message, there may be issues)
 
 To debug, please enable debug mode by uncommenting the following line:
 
@@ -102,7 +103,6 @@ resource "aws_lambda_function" "error_processing_lambda" {
 ```
 
 ## Technologies
-
 
 - Node.js (12.x)
 - Terraform (12.x)
