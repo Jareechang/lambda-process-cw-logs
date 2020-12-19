@@ -29,7 +29,7 @@ Create a function to process Cloudwatch logs streams to detect errors.
 
 Draft of the architecture (v1).
 
-![alt architecture diagram draft 1](./images/architecture/lambda-error-log-notification-architecture.svg)
+![alt architecture diagram draft 1](./images/architecture/lambda-error-log-notification-architecture-v1.png)
 
 ### Todo list 
 
