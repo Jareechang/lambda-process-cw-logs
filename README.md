@@ -3,7 +3,7 @@
 Create a function to process Cloudwatch logs streams to detect errors.
 
 
-🚧 This is a work in progress. More instructions to come.
+🚧 This is a work in progress.
 
 ## Contents 
 
@@ -39,7 +39,7 @@ Draft of the architecture (v1).
 - [ ] Setup SQS to delay processing of error notification events 
 - [ ] Setup other lambdas notification services (email, sms) 
 - [ ] Setup SNS for notification channels (ex. text, slack and email)
-- [ ] Include architecture diagram
+- [x] Include architecture diagram
 
 ### Sample Slack Notification
 
@@ -48,7 +48,7 @@ Draft of the architecture (v1).
 
 ## Quick Start
 
-⚠️  **Important:** ⚠️  Remember to destroy all resources after finish testing 
+> ⚠️  **Important:** Remember to destroy all resources after finish testing 
 
 ```sh
 terraform destroy -auto-approve
