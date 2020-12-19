@@ -25,11 +25,19 @@ Create a function to process Cloudwatch logs streams to detect errors.
 4. Setup SNS / slack notification for errors [BONUS]
 
 
+## Architecture
+
+Draft of the architecture (v1).
+
+![alt architecture diagram draft 1](./images/architecture/lambda-error-log-notification-architecture.svg)
+
 ### Todo list 
 
 - [x] Scaffold infra for print log lambda and error processor lambda 
 - [x] Scaffold send slack webhook alert
 - [x] Setup AWS SSM
+- [ ] Setup SQS to delay processing of error notification events 
+- [ ] Setup other lambdas notification services (email, sms) 
 - [ ] Setup SNS for notification channels (ex. text, slack and email)
 - [ ] Include architecture diagram
 
