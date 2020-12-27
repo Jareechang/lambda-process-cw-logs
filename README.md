@@ -38,6 +38,8 @@ Draft of the architecture (v1).
 - [x] Setup AWS SSM
 - [ ] Setup SQS to delay processing of error notification events 
 - [ ] Setup other lambdas notification services (email, sms) 
+- [ ] Setup lambda to publish to sns notifier topic
+- [x] Setup SNS and SQS infrastructure for fanout 
 - [ ] Setup SNS for notification channels (ex. text, slack and email)
 - [x] Include architecture diagram
 
