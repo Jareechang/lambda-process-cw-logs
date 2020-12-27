@@ -2,7 +2,6 @@
 
 Create a function to process Cloudwatch logs streams to detect errors.
 
-
 🚧 This is a work in progress.
 
 ## Contents 
