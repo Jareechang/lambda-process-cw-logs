@@ -133,7 +133,10 @@ data "aws_iam_policy_document" "lambda_cw_log_policy" {
     }
 
     statement {
-        actions   = ["ssm:GetParameters", "ssm:GetParametersByPath"]
+        actions   = [
+            "ssm:GetParameters",
+            "ssm:GetParametersByPath"
+        ]
         resources = [
             "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/${local.ssm_param_ns}*"
         ]
@@ -177,4 +180,46 @@ resource "aws_cloudwatch_log_subscription_filter" "error_lambda_logfilter" {
     depends_on = [
         "aws_lambda_permission.allow_cloudwatch_logs"
     ]
+}
+
+data "aws_iam_policy_document" "queue_sns_topic_policy" {
+    version = "2012-10-17"
+    policy_id = "sqs_sns_topic_policy"
+    statement {
+        effect = "Allow"
+        principals {
+            type = "Service"
+            identifiers = ["sns.amazonaws.com"]
+        }
+        actions = [
+            "sqs:sendMessage"
+        ]
+        resources = [aws_sqs_queue.log_error_queue.arn]
+        condition {
+            test = "ArnEquals"
+            variable = "aws:SourceArn"
+            values = [
+                aws_sns_topic.log_error_topic.arn
+            ]
+        }
+    }
+}
+
+resource "aws_sqs_queue_policy" "default" {
+  queue_url = aws_sqs_queue.log_error_queue.id
+  policy = data.aws_iam_policy_document.queue_sns_topic_policy.json
+}
+
+resource "aws_sns_topic" "log_error_topic" {
+    name = "log-error-notification-topic"
+}
+
+resource "aws_sqs_queue" "log_error_queue" {
+    name = "log-error-notification-queue"
+}
+
+resource "aws_sns_topic_subscription" "log_error_notify_sub" {
+    topic_arn = aws_sns_topic.log_error_topic.arn
+    protocol  = "sqs"
+    endpoint  = aws_sqs_queue.log_error_queue.arn
 }
